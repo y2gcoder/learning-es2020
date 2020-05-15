@@ -2,12 +2,14 @@ const input = document.querySelector("#input");
 const check = document.querySelector("#check");
 const logs = document.querySelector("#logs");
 
-let answer = [
-  Math.floor(Math.random() * 10),
-  Math.floor(Math.random() * 10),
-  Math.floor(Math.random() * 10),
-  Math.floor(Math.random() * 10),
-];
+let answer = [];
+
+let n = 0;
+while (n <= 3) {
+  answer[n] = Math.floor(Math.random() * 10);
+  n++;
+}
+
 answer.join(""); // 3046
 
 let count = 0;

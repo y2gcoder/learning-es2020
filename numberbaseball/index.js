@@ -21,3 +21,18 @@ check.addEventListener("click", () => {
     }
   }
 });
+
+// 별찍기
+// let num = 1;
+// while (num < 3) {
+//   console.log(
+//     " ".repeat(Math.abs(3 - num)) + "*".repeat(Math.abs(2 * num - 1))
+//   );
+//   num += 1;
+// }
+// while (num >= 1) {
+//   console.log(
+//     " ".repeat(Math.abs(3 - num)) + "*".repeat(Math.abs(2 * num - 1))
+//   );
+//   num -= 1;
+// }

@@ -28,6 +28,34 @@ check.addEventListener("click", () => {
       logs.appendChild(document.createTextNode("HR")); // 글자 추가
     } else {
       console.log("다르다");
+      // 문자'열'과 배'열' => 나열. 순서가 있음. for of 문 사용
+      let strike = 0;
+      let ball = 0;
+      // entries() 배열 뒤에만 가능
+      for (const [aIndex, aNumber] of answer.entries()) {
+        for (const [iIndex, iString] of input.value.split("").entries()) {
+          // 변수명에 속지 않게 문자열이니까 iString으로!
+          // console.log(aIndex, aNumber, iIndex, iString);
+          if (aNumber === Number(iString)) {
+            if (aIndex === iIndex) {
+              strike += 1;
+            } else {
+              ball += 1;
+            }
+          }
+        }
+      }
+      logs.appendChild(
+        document.createTextNode(`${input.value}: ${strike} strike ${ball} ball`)
+      );
+      if (count > 10) {
+        // 문자열에서는 웬만하면 문자열로 만들어서 넣어주자 ex) 배열 -> 문자열
+        logs.appendChild(
+          document.createTextNode(`Game Over: ${answer.join("")}`)
+        );
+      } else {
+        count++;
+      }
     }
   }
 });

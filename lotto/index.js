@@ -35,17 +35,48 @@ function colorize(number, tag) {
 }
 
 const resultTag = document.querySelector("#result");
-for (let i = 0; i < 6; i++) {
-  const ball = document.createElement("div");
-  ball.className = "ball";
-  colorize(winBalls[i], ball);
-  ball.textContent = winBalls[i];
-  resultTag.appendChild(ball);
-}
+// for (let i = 0; i < 6; i++) {
+//   // 클로저 문제 let이 나오면서 없어졌다.
+//   setTimeout(() => {
+//     const ball = document.createElement("div");
+//     ball.className = "ball";
+//     colorize(winBalls[i], ball);
+//     ball.textContent = winBalls[i];
+//     resultTag.appendChild(ball);
+//   }, 1000 * (i + 1));
+// }
 
+winBalls.forEach((number, index) => {
+  setTimeout(() => {
+    const ball = document.createElement("div");
+    ball.className = "ball";
+    colorize(number, ball);
+    ball.textContent = number;
+    resultTag.appendChild(ball);
+  }, 1000 * (index + 1));
+});
+// foreach와 map은 무슨 차이?
+// map은 반복문이면서 1:1 mapping에 좀 더 초점이 맞추어져있다.
+// foreach 는 단순 반복에 더 초점이 맞추어져 있다.
+// return이 있으면 map을 쓰는 게 좋고, 없으면 foreach가 좀 더 나은 듯
+
+// 성격이 다르면 중복을 줄이지 않아도 됨.
 const bonusTag = document.querySelector(".bonus");
-const bonusBall = document.createElement("div");
-bonusBall.className = "ball";
-colorize(bonus, bonusBall);
-bonusBall.textContent = bonus;
-bonusTag.appendChild(bonusBall);
+setTimeout(() => {
+  const bonusBall = document.createElement("div");
+  bonusBall.className = "ball";
+  colorize(bonus, bonusBall);
+  bonusBall.textContent = bonus;
+  bonusTag.appendChild(bonusBall);
+}, 7000);
+
+/**
+ * promise를 리턴받아서 쓸 때는 map을 쓴다.
+ * const promises = [1, 2, 3].map((v) => {
+ *  return Promise.resolve(v);
+ *  });
+ * // 이전 방식
+ * // Promise.all(promises);
+ * // 요즘 방식
+ * Promise.allSettled(promises);
+ */
